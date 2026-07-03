@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+		<head>
+				<meta charset="UTF-8">
+				<title>Insert title here</title>
+		<!-- 
+			설치 적용 방법1.
+				js폴더 내부에 다운로드 받은 jquery-4.0.0.min.js 경로를 작성해
+				jquery문법을 사용 할 수 있게 파일 불러와 적용 
+		 -->
+		 <script src="./js/jquery-4.0.0.min.js"></script>
+		 <script src="https://code.jquery.com/jqeury-latest.min.js"></script>
+		</head>
+	<body>
+		<h1>자바스크립트</h1>
+		<h1 id = "h1">자바스크립트2</h1>
+		
+		<h2>제이쿼리</h2>
+		<h2 id = "h2">제이쿼리2</h2>
+	
+			<script>
+			/*
+				제이쿼리 기본 선택자 작성 방법
+				
+				$("css선택자문법")
+					
+					"태그명"
+					"#id속성값"
+					".class 속성값"
+				1.$("") -> 태그명이 작성된 모든 태그들을 배열에 담아 선택 
+				  $("h2") -> [ <h2>제이쿼리</h2> , <h2 id = "h2">제이쿼리2</h2>]
+			*/
+			
+			
+				console.log($("h2")[0]);
+				  
+				let newH2 = $("")
+			    
+			
+			</script>
+	
+	</body>
+</html>
