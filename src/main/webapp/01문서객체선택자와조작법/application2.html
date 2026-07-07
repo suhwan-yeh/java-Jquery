@@ -38,27 +38,91 @@
 		- $("선택자")로 선택한 HTML요소 내부에 작성된 HTML요소를 가져오거나 교체할때 사용하는 메소드 
 		- 기본 작성 문법
 				1)  내용 가져오기 
+				
 					$("선택자").html();
-					설명 :  "선택자"로 선택한 요소 내부에 작성된 HTML요소를 가져옴 								
+					설명 :  "선택자"로 선택한 요소 내부에 작성된 HTML요소를 가져옴 				
+					
 					예를 들어   <div><span>바보똥개</span></div>.html(); ->  <span>바보똥개</span> 가져옴 
 	
 				2) 내용 변경하기 
+				
 					$("선택자").html("<p>새 내용</p>");
 					설명 :  "선택자" 선택한 요소 내부에 작성된 기존HTML요소를 모두 지우고, 새 HTML요소로 교체 
+					
 					예를 들어  <div><span>바보똥개</span></div>.html("<p>새 내용</p>");
 					         -><div><p>새 내용</p></div> 으로 교체 됨 													
-
+					        
+					         
+					               
+					         
 		find() 메소드
 		- 선택한 요소의 내부(자손 요소들)중에서 원하는 요소를 찾아 선택할떄 사용하는 메소드.
 		- 문법
 				$(기준요소선택).find("찾고싶은 하위요소 선택");
+					         
 		- 즉, find메소드는 기준 요소 안에 작성된 하위요소를 찾는다.
 		-    직계 자식요소 뿐만 아니라 더 깊은 단계 까지의 후손요소를 모두 탐색해서 찾을 떄 사용되는 메소드.
 
 */		
 		$(function(){
-		
+			/*순서1.  <button id="addTodoBtn">추가</button> 에 CLICK 이벤트 등록 후 이벤트 핸들러 함수 연결*/
+			$("#addTodoBtn").click(function(){
+				
+				/*순서2. <input type="text" id="todoInput" placeholder="할 일을 입력하세요" value="공부"> 에 입력한 할일 얻기  */			
+				const todoText = $('#todoInput').val().trim(); 
+				//참고.   .val()  -> <input>에 입력한 value속성에 설정된 값을 얻는 메소드
+				//참고.   .trim() -> 입력한 문자열의 앞뒤 공백을 제거한 후 제거시킨 전체 문자열 자체를 얻는 메소드 
+				
+				/*순서2.1.  <input>에 할일 입력 했는지 안했는지 조건 검사*/
+				if(todoText){ //<- 입력했다면?
+						
+					//할일 목록 추가 기능의 함수 호출 해서 처리 
+					addTodoList(todoText);
+				
+					//입력한 할일 문자열을 제거 
+					$('#todoInput').val('');
+											
+				}else{//<- 입력하지 않았다면?
+					
+					//경고 메세지창을 띄워 사용자에게 입력이 필요함을 알림
+					window.alert('할일 내용을 입력하고 "추가" 버튼을 누르세요.');
+				}				
+			});//======================click 메소드 호출 끝 
 			
+			/* 순서3. 입력한 할일 문자열을  <div id="todoList"></div> 요소 사이에 추가 하는 기능의 함수 */
+			function addTodoList(todoText){
+				
+				/* 순서3.1. 입력한 할일 문자열을 보여줄 새로운 <div class='todo-item'></div> 를 생성해서 저장*/
+				const todoItem = $('<div class="todo-item"></div>');
+				
+				todoItem.html(`<span>${todoText}</span>
+							   <button class="remove-btn">삭제</button>`);
+				/*
+				동적으로 생성한 할일 목록 영역 
+					<div class="todo-item">				
+						<span>${text}</span>	
+						<button class="remove-btn">삭제</button>
+					</div>				
+				*/
+				/* 순서 3.2. <div id="todoList"></div> 요소 사이에 바로 위 동적으로 생성한 <div>보내어 추가  */
+				$('#todoList').append(todoItem);
+				/*
+				<div id="todoList">
+					<div class="todo-item">				<-- 추가된 할일 목록 요소 영역 
+						<span>${text}</span>	
+						<button class="remove-btn">삭제</button>
+					</div>	
+				</div>
+				*/	
+				/*순서 3.3. <button class="remove-btn">삭제</button> 선택해서 CLICK이벤트 등록후 처리 */
+				todoItem.find(".remove-btn").click(function(){
+					
+					//동적으로 생성한 추가된 할일 목록 <div id="todo-item"></div> 제거 
+					todoItem.remove();
+					
+				});	
+			}//============== addTodoList 함수 끝 
+				
 		});
     </script>
 </head>
@@ -71,3 +135,9 @@
 
 </body>
 </html>
+
+
+
+
+
+

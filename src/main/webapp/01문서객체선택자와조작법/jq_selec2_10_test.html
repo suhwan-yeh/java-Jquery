@@ -6,8 +6,8 @@
 
  <!--
       주제 : index메소드를 사용하여 <body></body>사이에 있는 html태그중에서
-         <li></li>태그의 id속성값이 "list3"인 요소를 찾아
-         index위치 번호를 반환하는 예제
+	         <li></li>태그의 id속성값이 "list3"인 요소를 찾아
+	         index위치 번호를 반환하는 예제
 
 
 배열관련 메소드  종류
@@ -43,9 +43,10 @@ index메소드
 			    ]
 	
 					$("li").index( <li id="list3">내용3</li> );
-	*/
+	*/	
+		let idxNum = $("li").index( $("#list3") );  // 2
 		
-	
+		console.log(idxNum);
 	</script>
 
 </body>

@@ -37,12 +37,55 @@
 		<li>내용5</li>  <!--  index  4 -->	
 	</ul>
 	<script type="text/javascript">
-	
-
+		/*
+			$("#menu1 li").eq(2)
+			
+			-> id=menu1 작성된 <ul></ul>부모요소로 먼저 선택해 오고
+			   후손선택자 빈공백을 이용해 모든 <li></li>요소들을 배열에 담아 선택해 오는데...
+			   .eq(2) 를 이용해  2 index 위치칸에 저장된 후손 <li>내용3</li>요소 하나만 최종 선택
+		*/
+		//코드1.
+		$("#menu1 li").eq(2).css("background-color","red");
+		/*
+			$("#menu1 li:eq(2)")
+				
+			-> id=menu1 작성된 <ul></ul>부모요소로 먼저 선택해 오고
+			   후손선택자 빈공백을 이용해 모든 <li></li>요소들을 배열에 담아 선택해 오는데...
+			   :eq(2) 를 이용해  2 index 위치칸에 저장된 후손 <li>내용3</li>요소 하나만 최종 선택
+		*/
+		//코드2.
+		 $("#menu1 li:eq(2)").css("color","yellow");
 		
+		/*
+		  순서1.  $("#menu1")           -> <ul id="menu1">..</ul> 부모 요소 먼저 선택
+		  순서2.  $("#menu1>li")        -> 부모 <ul>의 내부에 작성된 모든 자식<li>요소들을 배열에 담아 선택해 오는데
+		  순서3.  $("#menu1>li:lt(2)")  -> 배열에 담긴 <li>요소들중에서도 
+		  								  2 index 위치 이전인 0과 1 index위치 칸에 저장된 
+										  <li>내용1</li>, <li>내용2</li>요소들만! 최종 선택 해옴 
+		*/	
+		//코드3.
+		 $("#menu1>li:lt(2)").css("background-color","aqua");	   
+			
+		/*
+		  순서1.  $("#menu1")           -> <ul id="menu1">..</ul> 부모 요소 먼저 선택
+		  순서2.  $("#menu1 li")        -> 부모 <ul>의 내부에 작성된 모든 후손<li>요소들을 배열에 담아 선택해 오는데
+		  순서3.  $("#menu1 li:gt(2)")  -> 배열에 담긴 <li>요소들중에서도 
+		  								  2 index 위치 다음 index위치 3, 4 칸에 저장된 
+										  <li>내용4</li>, <li>내용5/li>요소들만! 최종 선택 해옴 
+		*/			
+		//코드4. 
+		 $("#menu1 li:gt(2)").css("background-color","pink");
+										  
 	</script>
-	
-
+<!--  	
+	<ul id="menu1">
+		<li>내용1</li>    index  0 
+		<li>내용2</li>    index  1 
+		<li>내용3</li>    index  2 
+		<li>내용4</li>    index  3 
+		<li>내용5</li>    index  4 	
+	</ul>
+-->
 </body>
 </html>
 

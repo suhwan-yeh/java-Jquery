@@ -30,6 +30,34 @@
 		
 		<script>
 		$(function(){
+			
+			/*
+				순서1. $("#menu1 li")  -> id="menu1" 작성된 부모 <ul id="menu1">내부의 모든 후손 <li>요소들을 배열에 담아 선택
+				순서2. $("#menu1 li:nth-child(1)"
+				       -> 배열에 저장된 모든 후손 <li>요소들 중에서도 
+				          첫번째 <li>내용1-1</li> 만 최종 선택 
+			*/
+			//코드1. 
+			$("#menu1 li:nth-child(1)").css("background-color","red");
+				          
+			/*
+			순서1. $("#menu1 li")  -> id="menu1" 작성된 부모 <ul id="menu1">내부의 모든 후손 <li>요소들을 배열에 담아 선택
+			순서2. $("#menu1 li:nth-child(2n)"
+			       -> 배열에 저장된 모든 후손 <li>요소들 중에서도 
+			          2n 을 넣어 2의 배수 번째에 작성되어 있는 2번째 , 4번째 <li>요소들만 최종 선택해 옴
+			       -> 최종 선택한 li들 :  <li>내용1-2</li> , <li>내용1-4</li>
+			*/
+			//코드2.
+			$("#menu1 li:nth-child(2n)").css("background-color","pink");
+			
+			/*
+			 순서1. $("#menu2 li")  -> id="menu2" 작성된 부모 <ul id="menu2">내부의 모든 후손 <li>요소들을 배열에 담아 선택  
+			 순서2. $("#menu2 li:nth-last-of-type(1)")
+			 		-> :nth-last-of-type(1) 위치탐색선택자를 이용해 전달한 숫자1 을 사용하면
+			 		   거꾸로 작성된 위치를 세어 <li>내용2-2</li>를 최종 하나 선택
+			 */
+			//코드3.
+			$("#menu2 li:nth-last-of-type(1)").css("background-color","blue");
 
 		});
 		</script>

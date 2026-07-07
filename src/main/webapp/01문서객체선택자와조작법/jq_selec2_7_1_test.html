@@ -10,14 +10,25 @@
   	function add(){
 
   	  	//100개의 <div>This is element 0 ~ 99<div>요소들을 생성하여 저장시킬 빈 배열 생성	
+  	  	let elements = [];
   	   
   	  	
   	  	//100번 반복해서 <div>를 생성하여 위 []빈배열에 추가해서 저장
+  	  	for(let i=0;  i<100;  i++){
+  	  		
+  	  		elements.push("<div>This is element" + i + "</div>");
+  	  	}
   	 	
- 
   	  	//위 for문을 이용해 동적으로 생성한 <div>요소들 100개를 
   	  	//elements배열에 저장되어 있으므로 반복해서 <div>들을 꺼내서 사용하기 위해 
   	  	//$.each()메소드를 사용합시다.
+  	  	$.each( elements, function(index, element){
+  	  		
+  	  		//위 elements배열의 각 index위치 칸에 저장된 동적으로 push한 <div>들을 차례대로 반복해서 얻어
+  	  		//아래에 작성된 <div id="container"></div>요소 사이에 추가 (append메소드 이용)
+  	  		$("#container").append(element);
+  	  		
+  	  	});
   	  	
   	}
   </script>
@@ -33,5 +44,10 @@
 	
 </body>
 </html>
+
+
+
+
+
 
 
