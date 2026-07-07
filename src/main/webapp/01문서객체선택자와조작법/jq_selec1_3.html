@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		
+		<!-- JQuery 문법 사용을 위한 CDN 주소 작성 -->
+		<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+	</head>
+	<body>
+		<h1>제이쿼리</h1>
+		<h2 class="tit">선택자</h2>
+		<h3>직접선택자</h3>
+			
+		<script type="text/javascript">
+		
+	/*
+		 $(".tit")
+		  ->    <h2 class="tit">선택자</h2> 선택
+	*/
+		$(".tit").css("background-color","red").css("border","2px dashed yellow");
+		
+		
+	/*
+		[선택자로 DOM을 선택해 오는 기본 식]
+		-> $("선택자종류식")
+		   · DOM : 브라우저가 HTML 태그들을 인식해 만든 문서 구조(요소 하나하나)
+
+		[class 선택자로 요소 선택]
+		-> $(".클래스값")
+		   · .(점) : class 선택자 기호
+		   · class : 여러 요소가 같은 값 공유 가능 → 해당 요소 전부 선택
+
+		[스타일 연속 지정 - 체이닝]
+		-> $(선택자).css("속성","값").css("속성","값")
+		   · .css().css() : 점(.)으로 이어 연속 실행하는 방식
+	*/				
+		
+		</script>	
+			
+			
+	</body>
+</html>

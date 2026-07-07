@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		
+		<!-- JQuery 문법 사용을 위한 CDN 주소 작성 -->
+		<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+	</head>
+	<body>
+		<h1>제이쿼리</h1>   
+		<h1>제이쿼리2</h1>
+		<h2>선택자</h2>			<!-- $("h2, "#3") 중에서 $("h2")으로 선택  -> 파란색 점선 설정 -->
+		<h3 id="3">직접선택자</h3> <!--  id="3" -> #3으로 선택 -> 파란색 점선 설정  -->
+		
+		<script type="text/javascript">
+			/*
+				[그룹 선택자(다중선택자) ,로 요소 선택]
+				
+					->  $("선택자1 , 선택자2")
+					 :  ,    여러 선택자를 한꺼번에 다중 사용해서 태그 선택하는  그룹선택자 기호
+					 :  선택자1   선택자2 자리에 작성하는 선택 방법이 달라도 상관 없음   		
+			
+			$("h2, #3") : <h2>선택자</h2>  +  <h3 id="3">직접선택자</h3> 두 태그를 동시 선택
+			*/
+			$("h2 , #3").css("border","2px dotted blue");
+					
+		
+			/*
+				[요소명(태그명)  선택자로 요소 선택]
+			
+					->   $("태그명")
+					   :  해당 태그를 문서에서 전부 선택
+			
+			$("h1")  : 모든 <h1> 선택 	
+			$("h1").css("color","red");  : 선택한 모든 <h1>의 글자색상을 빨강으로 설정 
+			*/
+			$("h1").css("color", "red");
+		
+		</script>
+		
+	</body>
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	
+		<!-- JQuery 문법 사용을 위한 CDN 주소 작성 -->
+		<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+		<script>
+			 $(function() {
+				/*
+					[ id 선택자 # 로 DOM을 선택해오는 식]
+				
+						$("#id값")
+						-> id값이  #뒤에 작성한 "id값"과 정확히 일치하는 태그 하나만 선택 합니다.
+						
+				<h2 id="tit">선택자</h2> 선택 
+				.css("background-color","red")  코드를 이용해  배경색을 빨강으로 설정 
+				.css("border","2px solid yellow"); 코드를 이용해 2px 굵기  가는실선  노란색실선 테두리 선 설정
+				*/
+				$("#tit").css("background-color","red").css("border","2px solid yellow");
+				
+				/*
+				자바스크립트 코드 작성 한다면? 아래와 같이 작성해야 한다.
+				
+				document.getElementById("tit").style.backgroundColor = "red";
+				document.getElementById("tit").style.border = "2px solid yellow";
+				*/
+			});
+		</script>
+	</head>
+	<body>
+		<h1>제이쿼리</h1>
+		<h2 id="tit">선택자</h2> <!-- 선택 대상 태그 -> 빨강 배경 + 노란 테두리 실선 2px -->
+		<h3>직접선택자</h3>
+	</body>
+</html>
+
+
+
+
+
+
+

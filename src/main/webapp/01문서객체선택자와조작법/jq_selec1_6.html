@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		
+		<!-- JQuery 문법 사용을 위한 CDN 주소  -->
+		<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+	</head>
+	<body>
+		<h1>나도 데려가줘</h1>
+		<h1 class="tit">제이쿼리</h1>
+		<h2 id="a">선택자</h2>
+		<h2>선택자2</h2>
+		<h3 class="tit">직접선택자</h3>
+		
+		<script type="text/javascript">
+			/*
+				<h1 class="tit">제이쿼리</h1>  최종 선택!
+				
+				$("h1.tit")  ->  모든 h1 중 class="tit"인 h1 만 최종선택 후  글자색 yellow로 설정
+			*/
+			$("h1.tit").css("color","yellow");   
+			/*
+				<h2 id="a">선택자</h2> 최종 선택!
+				
+				$("h2#a")  ->  모든 h2 중  id="a"인 h2만 최종선택후 글자색 red로 설정	
+			*/
+			$("h2#a").css("color","red");
+			
+			/*아래는 위와 유사한 순수 JS 버전 (비교용)*/	
+			//document.getElementsByTagName("h2")[0].style.color = "red";
+				
+				
+			/*
+				[종속선택자로 요소 선택 - class속성값 기준]
+			
+				-> $("요소명.class값")
+					: $("요소명") 으로 모든요소 선택 -> 그중에서 class값이 일치하는 요소만 최종 선택
+					
+				=====================================================
+					
+				[종속선택자로 요소 선택 -  id속성값 기준]
+			
+				-> $("요소명#id값")
+				 : $("요소명") 으로 모든요소 선택 -> 그중에서 id값이 일치하는 요소만 최종 선택 
+				
+			*/
+		
+		
+		</script>
+		
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
