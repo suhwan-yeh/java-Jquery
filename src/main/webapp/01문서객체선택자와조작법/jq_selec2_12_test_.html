@@ -20,36 +20,74 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
 	$(function(){
-
+		/*
+			p요소들 중에서도 현재 숨겨져서 브라우저에 보이지 않는 상태의
+			<p style="display:none;">내용2</p> 최종 선택!
 		
+			순서1. $("#wrap p")  			->  <div id="wrap">의 모든 후손 <p>요소들을 선택 하고,
+			순서2. $("#wrap p:hidden")	    ->  선택한 <p>들 중에서도 현재 숨겨져서 있는 상태의 <p>요소만 최종 선택
+		*/
+			$("#wrap p:hidden").css({"display":"block",  "backgroundColor":"yellow"});
+		
+		/*		
+			<select>사이에 작성된 <option>요소들 중에서 강제로 선택 되어 있는 상태의 
+			<option value="opt2" selected>옵션2</option> 최종 선택 후 
+			value="opt2" 의 값 "opt2" 얻어 사용
+			
+			순서1. $("#zone1 ")  		->  <p id="zone1">..</p> 부모요소 선택 후 
+			순서2. $("#zone1 :selected") ->  부모 <p>요소 내부에 작성된 후손 <select>안의 강제 선택된 <option>요소 하나 최종선택!
+			순서3. $("#zone1 :selected").val(); -> 강제 선택된 <option value="opt2">의  "opt2" 값을 얻는다.
+		*/
+			let z1 = $("#zone1 :selected").val();
+			console.log(z1);
+			
+		/*
+			모든 체크박스들 중에서  checked 속성명이 작성된 강제 체크된 상태의 
+			<input type="checkbox" name="hobby3" value="등산" checked> 최종 선택 후 
+			value="등산" 중에서 값 "등산" 얻어 사용	
+			
+			순서1. $("#zone2 ")  		->  <p id="zone2">..</p> 부모요소 선택 후  
+			순서2. $("#zone2 :checked")  ->   후손 <input type="checkbox">중에서도 강제로 체크된 <input>만 최종 선택 
+			순서3. $("#zone2 :checked").val();  -> value속성에 설정된 체크된 상태의 값을 얻는다.
+		*/
+		   let z2 = $("#zone2 :checked").val();
+		   console.log(z2);
+			
+		/*   
+		   모든 <input type="radio">요소 2쌍 중에서  현재 checked속성이 적혀 있는 강제 체크된 상태의  	
+		   <input type="radio" name="gender" value="female" checked> 여성  최종 선택! 후 
+		   value속성의 체크된 상태의 값 "female" 얻는다.
+		*/
+		  let z3 = $("input[type=radio]:checked").val();
+		  console.log(z3); //"female"
+	 
 	});
 	</script>
 </head>
 <body>
 	<div id="wrap">
 		<p>내용1</p>
-		<p style="display:none;">내용2</p>
+		<p style="display:none;">내용2</p>  <!-- 숨겨진 <p>내용2</p>  -->
 		<p>내용3</p>
 	</div>
 	<form action="#">
 		<p id="zone1">
 			<select name="course" id="course">
-					<option value="opt1">옵션1</option>
-					<option value="opt2" selected>옵션2</option>
-					<option value="opt3">옵션3</option>
+				<option value="opt1">옵션1</option>
+				<option value="opt2" selected>옵션2</option>  <!-- 강제 선택되어 있는 <option>옵션2</option>  -->
+				<option value="opt3">옵션3</option>
 			</select>
 		</p>
 		<p id="zone2">
 				<input type="checkbox" name="hobby1" value="독서"> 독서
 				<input type="checkbox" name="hobby2" value="자전거" > 자전거
-				<input type="checkbox" name="hobby3" value="등산" checked> 등산
+				<input type="checkbox" name="hobby3" value="등산" checked> 등산  <!-- 강제 체크되어 있는 체크박스 등산 -->
 		</p>
 		<p id="zone3">
 				<input type="radio" name="gender" value="male"> 남성
-				<input type="radio" name="gender" value="female" checked> 여성
+				<input type="radio" name="gender" value="female" checked> 여성  <!-- 강제 선택되어 있는 라디오 버튼 여성 -->
 		</p>
-	</form>
-</body>
+	</form>      
 </html>
 
 

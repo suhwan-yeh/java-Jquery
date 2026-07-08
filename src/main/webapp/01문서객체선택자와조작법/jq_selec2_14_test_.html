@@ -25,8 +25,30 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
 	$(function(){
-
-
+		
+		/*
+			순서1. $("#inner_1")  				-> <section id="inner_1"> 부모요소 먼저 선택
+			순서2. $("#inner_1").find(".txt1")   -> <section> 부모요소 내부에 작성된 class=txt1 인 하위 <p>자식요소만 최종 선택
+		*/
+		$("#inner_1").find(".txt1").css("backgroundColor","aqua");
+			
+			
+		/*
+			순서1. <section id="inner_2"> 요소를 먼저 선택해 오고 
+			      그 하위 모든 자식<p>들을 배열에 담아 선택해 오는데......
+			      
+			      [<p>index 0</p>, <p>index 1</p>, <p>index 2</p>, <p>index 3</p> ] <- 배열
+			             0               1                 2             3          index
+			        
+			      선택한 모든 <p>요소들의 갯수만큼 반복처리 하기 위해 fileter() 메소드 선택자를 이용하자.
+			 
+			 순서2.  filter() 메소드 선택자 내부의 function을 사용해  
+			        return idx % 2 == 0 조건식의 결과가 true되는  <p>요소들만 최종 새로운 배열에 담아 선택 해 옴 
+			        그러므로 [<p>index 0</p>, <p>index 2</p>] 최종 선택 
+		*/		  
+			
+		$("#inner_2 p").filter(function(idx,obj){ return  idx  % 2 == 0; }).css("backgroundColor","pink");
+			        
 	});
 	</script>
 </head>

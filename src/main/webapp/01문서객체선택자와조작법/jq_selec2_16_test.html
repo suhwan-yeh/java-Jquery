@@ -11,7 +11,7 @@
       - 문법
            $.get(요청할_서버페이지_URL, 
            		 서버페이지로 요청전송할 데이터(객체형식) - 선택사항,
-                               요청이 성공했을때 호출될 콜백함수 function);
+                 요청이 성공했을때 호출될 콜백함수 function);
   -->
 </head>
 <body>
@@ -19,6 +19,34 @@
 	<div id="result"></div>
 	
 	<script type="text/javascript">
+		
+		//1. 위 <button>요소를 선택해서 "CLICK"이벤트를 등록하여 
+		//   사이트 이용자가 <button>요소를 클릭하면 "ClICK"이벤트를 처리 하는 구문 작성
+		$("#fetch-data").click(function(){
+			
+			//2. 외부 회사에서 미리 만들어 놓고 제공하는 서버페이지를 $.get() 메소드를 이용하여 요청하여
+			//   서버페이지에서 제공하는 .json 파일의 데이터를 얻자
+			$.get("https://jsonplaceholder.typicode.com/posts/1", function(data){
+																		//= 요청에 따른 응답 데이터 전달 받음 
+				
+				//3. <div id="result"></div> 요소를 선택해서 가져와 내부에 응답 받은 {}객체 정보를 넣자
+				$("#result").append("<h2>" + data.userId + "</h2><p>" + data.body + "</p>");
+								
+				/*															
+				{			
+				  "userId": 1,
+				  "id": 1,
+				  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+				  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+				}
+				*/
+				
+			});
+			 
+
+		});
+	
+	
 
 	</script>
 	
