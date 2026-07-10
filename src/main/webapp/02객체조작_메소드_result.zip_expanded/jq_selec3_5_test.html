@@ -39,7 +39,7 @@
 				2. 텍스트       <h1>텍스트</h1>   ->  텍스트      TextNode     정수값 3
 				3. 주석기호    <!--  ->        ->  <!-- ->  CommentNode  정수값 8
 				4. jq_selec3_5_test.html문서파일  ->       DocumentNode  정수값 9
-				5. 속성          <img src="경로"> ->  src      AttributeNode  정수값 2
+				5. 속성       <img src="경로"> ->  src      AttributeNode  정수값 2
 				 
 			
 				("요소선택").prop("nodeType");
@@ -51,9 +51,72 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 	<script>
-	$(function(){
-	
-	});
+		$(function(){
+				
+			/*설명.
+				<input type="checkbox" name="chk1" id="chk1"> 요소 선택해서 
+				.prop("checked"); 형태로 메소드를 호출하면
+				선택한 체크박스가 체크된 상태이면? true 반환하고, 미체크 된 상태이면? false 반환하게 되는데..
+				선택한 체크박스가 미체크된 상태이므로 false를 반환합니다.
+			*/
+				let result_1 = $("#chk1").prop("checked");
+				console.log(result_1); // false 
+				
+			/* 설명
+				  <input type="checkbox" name="chk2" id="chk2" checked>	요소를 선택해서
+				  prop("checked"); 형태로 메소드를 호출해서 체크된 상태인지 물어보면
+				  체크된 상태(checked 가 설정된 상태) 이니 true를 반환받아 얻습니다.
+			*/
+			    let result_2 = $("#chk2").prop("checked");
+				console.log(result_2);  // true
+				
+			/*
+			설명.
+				<select name="se_1" id="se_1">
+					<option value="opt1">option1</option>  			<- 0 index
+					<option value="opt2">option2</option>  			<- 1 index
+					<option value="opt3" selected>option3</option>  <- 2 index
+				</select>
+				선택상자 요소를 선택해서 가져와서 
+				.prop("selectedIndex"); 형태로 메소드를 호출하면 
+				selected 속성이 설정된(선택된) <option>요소의 인덱스를 반환합니다.
+			*/		
+			 let result_4 = $("#se_1").prop("selectedIndex");
+			 console.log(result_4);  // 2
+				
+			/*
+			 설명.
+			 	<label for="chk1">chk1</label> 요소를 선택해서 
+				.prop("nodeType"); 형태로 호출하면 선택한 <label>요소가 어떤 종류의 노드인지 반환받는데
+				요소노드 이기때문에 정수 1을 반환 받는다.
+			*/
+			let	result_5 = $("label:eq(0)").prop("nodeType");
+			console.log(result_5); // <label for="chk1">chk1</label> 요소노드 - 정수 1
+			
+			/*
+			<input type="text" name="id" id="user_id" value="admin" > 요소를 선택해서 
+			value속성에 설정된 "admin"을  "scott"로 변경 시키자.
+			
+			참고. val메소드 활용
+			*/
+			$("#user_id").val("scott");
+			
+			/*
+			초기 모습
+				<input type="text" name="id" id="user_id" value="admin" >
+			현재 변경된 모습 
+				<input type="text" name="id" id="user_id" value="scott" >
+
+			
+			설명.
+			<input type="text" name="id" id="user_id" value="scott" > 요소를 선택해서
+			prop("defaultValue"); 형태로 호출하면  변경하기 전의 value="admin" 중 "admin" 얻을수 있다.
+			*/
+			let result_6 = $("#user_id").prop("defaultValue");
+			console.log(result_6); //"admin"
+			
+			
+		});
 	</script>
 </head>
 <body>
@@ -70,7 +133,6 @@
 			<input type="checkbox" name="chk3" id="chk3" >
 			<label for="chk3">chk3</label>
 		</p>
-	
 		
 		<p>
 			<select name="se_1" id="se_1">

@@ -7,13 +7,26 @@
 </head>
 <body>
 	<ul id="listZone">
+<!-- 4. <li>리스트prependTo</li> -->
+<!-- 3. <li>리스트prepend</li> -->
 		<li>리스트</li>
+<!-- 1. <li>리스트append</li> -->
+<!-- 2. <li>리스트appendTo</li> -->
 	</ul>
 	<script>
-
-	
+		//1. $("부모요소선택").append("새요소작성해서 넣기");
+		  $("#listZone").append("<li>리스트append</li>");
+		    
+		//2. $("새요소작성해서 넣기").appendTo("부모요소선택");
+		  $("<li>리스트appendTo</li>").appendTo("#listZone");
+		  
+		//3. $("부모요소선택").prepend("새요소작성해서 넣기");
+		  $("#listZone").prepend("<li>리스트prepend</li>");
+		
+		//4. $("새요소작성해서 넣기").prependTo("부모요소선택");
+		  $("<li>리스트prependTo</li>").prependTo("#listZone");
+			
 	</script>
-	
 	<!-- 
 		DOM객체(HTML태그) 편집 메소드 종류
 		

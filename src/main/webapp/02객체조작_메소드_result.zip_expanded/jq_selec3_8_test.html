@@ -38,14 +38,37 @@
 	<script>
 	$(function(){
 	
+		/*
+			<h1>위치 메서드</h1> 요소를 선택해서 
+			전체 문서 화면을 기준으로 
+			아래 쪽 방향으로 스크롤 막대바가 얼마만큼 떨어져 있는지 <h1>요소의 y축 좌표 위치값 얻기
+		*/
+		let topNum = $("h1").offset().top;
+		console.log(topNum);  //2000
+		
+		/*
+		 웹브라우저 윈도우창 정보를 제공하는 window객체를 선택해서 
+		 scrollTop(2000); 수치를 넣어 메소드를 호출하면
+		 스크롤 막대바가 y축  수직 방향으로 2000px 만큼 아래로 강제 이동된 상태로 브라우저화면에 보여줄수 있다.
+		*/
+	 	$(window).scrollTop(topNum);
 			
-	});
+		
+		/*
+			 웹브라우저 윈도우창 정보를 제공하는 window객체를 선택해서 
+			 scrollTop(); 메소드를 호출하면  오른쪽에 위치한 스크롤 막대바가 수직 방향으로 이동한 y축의 윗칫값을 얻을수 있다.
+		*/
+		let sct = $(window).scrollTop();
+		console.log(sct); //2000
+		
+		
+	}); 
 	</script>
 </head>
 <body>
 	<div id="wrap">
 		<h1>위치 메서드</h1>
-	</div>
+	</div> 
 </body>
 </html>
 
