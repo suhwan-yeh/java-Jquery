@@ -43,12 +43,43 @@
 				
 	    //1.기본이벤트 등록방식이란? HTML문서에 미리 작성되어 있는 요소를 선택해서 이벤트를 등록하는 방식
 				
-				
-				
+	    	//<button class="btn_1">버튼1</button>요소를 선택해서 mouseover 이벤트 등록
+	    	$(".btn_1").on("mouseover", function(){   alert('Hello!');     });
+	    	
+	    			
 		//2.기본이벤트 등록 제거 ? 등록한 기본이벤트 삭제
 			
-	
+	    	//<button class="del_1">버튼1 이벤트 해지</button> 요소를 선택해서 click 이벤트 등록 
+	    	$(".del_1").on("click", function(){
+	    		
+	    		//<button class="btn_1">버튼1</button>요소를 선택해서 등록된 "mouseover"이벤트를 요소에서 제거 
+	    		$(".btn_1").off("mouseover");
+	    		
+	    		
+	    	});
 			
+	
+			//-------------------------------------------------------------------------------
+			
+			
+			//<p><button class='btn_2'>버튼2</button></p> 동적으로 생성해서 <div></div>요소 사이에 추가 
+			$("#wrap").append("<p><button class='btn_2'>버튼2</button></p>");
+			
+		//라이브 이벤트 등록 방식? 동적으로 생성된 요소에 on메소드로 이벤트를 등록하는 방식
+			//<p><button class='btn_2'>버튼2</button></p>  동적으로 생성된 요소에 mouseover 이벤트 등록
+			$(document).on("mouseover",".btn_2", function(){
+
+				 alert("WELCOME!");
+			
+			});
+			
+			//<button class="del_2">버튼2 이벤트 해지</button> 요소를 선택해서 click이벤트 등록!
+			$(".del_2").on("click", function(){
+
+				//라이브 이벤트 등록 방식 on()메소드를 사용해 등록된 "mouseover"이벤트 제거 
+				$(document).off("mouseover",".btn_2");
+			
+			});	
 	
 
 	});

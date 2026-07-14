@@ -42,8 +42,41 @@
 	 									  function(){mouseout이벤트발생시 처리할 코드;});
 		*/
 		 
-			
+		//주제1. 부모 body요소에 mouseover 와 mouseout 이벤트 각각 등록 후 이벤트 처리 
 		
+		$("body").on("mouseover",function(){
+			
+			console.log("부모 body요소에서 mouseover 이벤트가 발생되어 처리됨");
+		});
+		
+		$("body").on("mouseout", function(){
+			
+			console.log("부모 body요소에서 mouseout 이벤트가 발생되어 처리됨");	
+		});
+		
+		//주제2. 자식요소 <button class="btn1">Mouse Over/Mouse Out</button> 를 선택해
+		//      mouseover 와  mouseout 이벤트를 하나의 on메소드로 다중 등록 후 각각 이벤트가 발생하면 이벤트 처리 함수 각각 실행되게 하자 
+		$(".btn1").on({
+			
+			"mouseover" : function(){   $(".txt1").css("background-color", "yellow")  },
+			"mouseout"  : function(){   $(".txt1").css("background",  "none")  }	
+		});
+		
+		//주제3. 자식요소 <button class="btn2">Hover</button> 를 선택해
+		//      hover 이벤트 등록 메소드를 사용하여   마우스를 올리거나 내리는 동작을 등록 해서 처리 
+		$(".btn2").hover(
+						//mouseover이벤트가 발생했을때 처리할 이벤트 핸들러 함수 작성
+						 function(){
+							//<p class="txt2">내용2</p> 요소 선택후 배경색을 아쿠아색으로 설정
+							$(".txt2").css("backgroundColor","aqua");
+						},
+						 
+						//mouseout이벤트가 발생했을때 처리할 이벤트 핸들러 함수 작성 
+				         function(){
+							//<p class="txt2">내용2</p> 요소 선택후 배경색을 제거
+							$(".txt2").css("background","none");
+						}
+					   );	
 	
 	});
 	</script>

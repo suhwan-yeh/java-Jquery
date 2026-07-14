@@ -20,7 +20,24 @@
 	<script>
 	$(function(){
 		
-	
+		//첫번째 <select id="rel"></select>요소 선택해서 
+		//여러 <option>들 중에서 하나를 선택한 동작(change이벤트) 등록 
+		$("#rel").on("change",function(){
+			
+			//$(this) ->  <option>들 중에서 사이트 이용자가 선택한 <option>하나를 선택 
+			
+			//선택한 <option>의  value속성값 얻기 
+			let selectedOption  = $(this).val();
+			
+			//<p class="txt"></p> 요소 선택 해서 콘텐츠영역에 넣어 보여주기
+			$(".txt").text(selectedOption); //국어 -> k   ,  영어 -> e ,  수학 -> m 
+			
+		});
+		
+		//두번쨰 <select id="rel_site"></select> 요소를 선택
+		//.val("값") 형태로 메소드 호출 구문을 작성하면  값이   "www.daum.net" 인  <option>을 선택해서 가져와
+		// 강제로 선택한 상태의 화면을 보여주기 위해 change()메소드 호출 구문을 작성하자!		
+		$("#rel_site").val("www.daum.net").change();		
 	});
 	</script>
 </head>

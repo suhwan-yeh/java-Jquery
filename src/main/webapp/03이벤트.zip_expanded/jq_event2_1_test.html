@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title> 이벤트 </title>  
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script>
+		$(function(){
+		/*
+			focus()
+			- 요소를 선택해서  선택한 요소에 포커스를 이동시키는 동작(이벤트)을 등록하는 메소드.
+		
+			blur()
+			- 선택한 요소에서 포커스가 존재하다가 다른 요소로 이동시키는 동작(이벤트)을 등록하는 메소드.
+					
+			focusin()
+			- 선택한 요소의 하위요소 중에서 입력요소로 포커스를 이동시키는 동작(이벤트)을 등록하는 메소드.			
+			
+			focusout()
+			- 선택한 요소의 하위요소 중에서 입력요소에 포커스가 존재하다가  외부요소로 이동시키는 동작(이벤트)을 등록하는 메소드.
+			
+			
+			 ============ 위 이벤트 등록 메소드들 전체 작성 문법 ======================
+			
+			 $("이벤트대상요소선택").focus 또는 blur 또는  focusin 또는 focusout(function(){ 이벤트처리코드;  });
+	
+			 $("이벤트대상요소선택").on("focus 또는 blur 또는  focusin 또는 focusout", function(){ 이벤트처리코드; }   );
+	
+			 
+			============ 스크롤 막대바를 강제로 이동 시키는 이벤트 등록 방법 작성 문법 ============
+			
+			 $("이벤트대상요소선택").focus 또는 blur 또는  focusin 또는 focusout();
+		*/
+
+		/*
+		1.  <input type="text" name="user_id_1" id="user_id_1">
+			<input type="password" name="user_pw_1" id="user_pw_1"> 요소 2쌍을 다중 선택해서 
+			on 메소드를 사용하여 "focus" 이벤트 등록
+		*/	
+/* 			$("#user_id_1, #user_pw_1").on("focus", function(){
+				
+				//1.1. 두쌍의 <input>중에서 하나의 <input>에 focus 이벤트가 발생하면 이벤트 처리 코드 작성
+				//$(this) =>  focus 이벤트가 발생한 <input> 요소 하나 선택 
+				$(this).css("background-color","pink");
+				
+			});
+*/			
+		/*
+		2.  <input type="text" name="user_id_1" id="user_id_1">
+			<input type="password" name="user_pw_1" id="user_pw_1"> 요소 2쌍을 다중 선택해서 
+			on 메소드를 사용하여 "blur" 이벤트 등록
+		*/			
+/* 			$("#user_id_1, #user_pw_1").on("blur", function(){
+				
+				//2.1. 두쌍의 <input>중에서 하나의 <input>에 blur 이벤트가 발생하면 이벤트 처리 코드 작성
+				//$(this) =>  blur 이벤트가 발생한 <input> 요소 하나 선택 
+				$(this).css("background-color","white");
+				
+			}); 
+*/			
+		//========================================================================================
+			
+		//	 - on() 메소드를 이용해 하나이상의 이벤트를 선택한요소에 이벤트 다중 등록 기본문법3 ******
+			 
+		 	 $("#user_id_1, #user_pw_1").on({
+		 		 								"focus" : function(){ $(this).css("background-color","pink");  },
+		 		 								
+		 		 								"blur" : function(){ $(this).css("background-color","white"); }
+		 		 							
+		 	 								});	
+			
+		//=============================================================================================
+			
+			
+			/*
+			3.  2번째로 작성되어 있는 <form></form>요소를 선택해 
+			    <form>내부에 작성된 입력요소 2개 <input>에 focusin 이벤트 등록!
+			*/
+/*			
+			$("form:eq(1)").focusin(function(){
+				
+				//$(this) -> focusin이벤트가 발생한 전체 영역인 <form>요소선택 
+				
+				//focusin이벤트가 발생한 <form>의 하위요소 선택 방법1.
+				//		$(하위요소선택,this)             ->  this로 focusin이벤트가 발생한 <form>요소안에 작성된 하위요소를 최종선택
+				
+				//focusin이벤트가 발생한 <form>의 하위요소 선택 방법2.
+				//		$(this).find("모든하위요소선택")  ->  $(this)로  focusin이벤트가 발생한 <form>요소안에 작성된 하위요소를 최종선택
+				
+				//focusin이벤트가 발생한 <form>의 하위요소 선택 방법3.
+				//		$(this).children("직계하위요소선택") -> $(this)로  focusin이벤트가 발생한 <form>요소안에 작성된 하위요소를 최종선택
+				  
+				//console.log(  $("#user_id_2" ,this) );
+				
+				//하위 입력 요소 2개 중에 어느 하나라도 focusin 이벤트가 발생하면
+				//   $(하위요소선택 , this)로 <input>선택하여 focus이벤트들 등록하여 
+				//   focus이벤트가 발생한 <input>에 배경색을 분홍색으로 설정
+				$("#user_id_2",this).focus(function(){
+					
+					$(this).css("background-color","pink");
+					
+				});
+				
+				$("#user_pw_2", this).focus(function(){
+					
+					$(this).css("background-color","pink");
+					
+				});
+			
+				$("#user_id_2",this).blur(function(){
+					
+					$(this).css("background-color","white");
+					
+				});
+				
+				$("#user_pw_2", this).blur(function(){
+					
+					$(this).css("background-color","white");
+				});
+				
+				
+			});
+*/
+		
+		$("form:eq(1)").on({
+								"focusin" : function(){
+									
+										$("#user_id_2,  #user_pw_2",this).on({
+											
+																				"focus": function(){  $(this).css("background-color","pink")  }
+											
+																			 });
+									
+								},
+			
+								"focusout" : function(){
+									
+										$("#user_id_2,  #user_pw_2",this).on({
+																				"blur": function(){  $(this).css("background-color","white") }
+											
+																			 });
+								}
+						   });
+
+
+
+		});//$(function(){});
+	</script>
+</head>
+<body>
+	<h1>focus / blur</h1>
+	<form action="#">
+		<p>
+			<label for="user_id_1">ID</label>
+			<input type="text" name="user_id_1" id="user_id_1">
+		</p>
+		<p>
+			<label for="user_pw_1">PW</label>
+			<input type="password" name="user_pw_1" id="user_pw_1">
+		</p>
+	</form>
+	<h1>focusin / focusout</h1>
+	<form action="#" id="frm_2">
+		<p>
+			<label for="user_id_2">ID</label>
+			<input type="text" name="user_id_2" id="user_id_2">
+		</p>
+		<p>
+			<label for="user_pw_2">PW</label>
+			<input type="password" name="user_pw_2" id="user_pw_2">
+		</p>
+	</form>
+</body>
+
+</html>

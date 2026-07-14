@@ -50,17 +50,46 @@
 		<label>이름:</label> <input id="name" name="name"> 
 		<button type="submit">전송요청</button>
 	</form>
-	
 	<p><a href="http://www.easyspub.co.kr/" class="btn1">버튼1</a></p>
 	<p class="txt1">내용1</p>
 	<p><a href="http://www.easyspub.co.kr/" class="btn2">버튼2</a></p>
 	<p class="txt2">내용2</p>
 	<p><button class="btn3">버튼3</button></p>
 	<p class="txt3">내용3</p>
-
-
-	<script type="text/javascript">
-
+	<script type="text/javascript"> 
+		/*
+			<form id="myForm" action="a.jsp"></form> 요소를 선택해서  내부에 작성된 전송요청 버튼을 클릭하면
+			전송(submit)이벤트가 발생 하는 것 차단 !
+		*/
+		$("#myForm").on("submit", function(event){
+			
+			event.preventDefault();    //전송 이벤트 차단 방법1	
+			
+			console.log('전송');
+			
+			//return false;           //전공 이벤트 차단 방법2
+		});
+	
+	
+	
+	
+		/*
+			<a href="http://www.easyspub.co.kr/" class="btn1">버튼1</a> 요소를 선택해 click 이벤트 등록
+		*/
+		$("a[class=btn1]").on("click",function(event){
+			
+			/* <a>요소의 href속성에 적힌 주소로 재요청을 통해 이동되는 기본이벤트 차단 방법2
+			   작성방법    event객체.preventDefault();   
+			   참고. 가장 첫줄에 작성!
+			*/
+			event.preventDefault();
+			
+			/* <p class="txt1">내용1</p> 요소를 선택해서 배경색을 노란색으로 설정 */
+			$(".txt1").css("backgroundColor","yellow");
+			
+			/* <a>요소에 href속성에 적힌 주소로 재요청을 통해 이동되는 기본이벤트 차단 방법1 */
+			//return false;
+		});
 		
 	
 	</script>
