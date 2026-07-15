@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title> 이벤트 </title>  
+<style>
+	body{font: 14px Malgun Gothic, "맑은고딕",sans-serif;}
+	.zoomBtnZone{font-size: 14px;}
+</style>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+$(function(){ // event_last.html 문서의 내용을 웹브라우저로 로딩해서 읽어 들였을떄 실행되는 function함수 
+	
+	//1. 초기 기본 글꼴 크기를 14px로 설정해 놓는다.
+	let baseFontSize = 14;
+	
+	//2. 아래 작성한 <button>   -  100%  +   3쌍을 선택해서  click 이벤트 등록
+	$(".zoomBtnZone button").on("click", function(){
+		
+		    //참고.
+			//$(this) <- 3개의 button 요소 중에서  "click" 이벤트가 발생한 button요소 선택
+		
+			//조건1. 만약 click button요소가  - button요소 라면?
+			if( $(this).hasClass("zoomOutBtn") ){  //<button class="zoomOutBtn">-</button>
+				
+				//조건1-1. 만약 현재글꼴 크기가 8px이하라면? 더이상 baseFontSize변수값을  -- 하지 않도록 이벤트핸들러 함수 종료 
+				if(baseFontSize <=  8){  return false;  }
+						
+				//현재 글꼴 크기를 14px에서 1감소 시켜 다시 저장
+				baseFontSize--;
+				
+			//조건2. 만약 click한 button요소가  + button요소 라면?	
+			}else if( $(this).hasClass("zoomInBtn") ){ //<button class="zoomInBtn">+</button>
+				
+				//조건2-1. 만약 현재글꼴 크기가 20px이상이 되면 더이상 확대 하지 않게 이벤트핸들러 함수 종료해 아래 baseFontSize ++  안함 
+				if(baseFontSize >= 20){ return false;  }
+				
+				//현재 글꼴 크기를 14px에서 1증가해 다시 baseFontSize변수에 저장
+				baseFontSize = baseFontSize + 1;     //baseFontSize++
+			
+				
+			//조건3. 만약 click한 button요소가 100% button요소 라면?	
+			}else{
+				
+				//글꼴 크기를 기본 크기인 14px로 baseFontSize변수에 저장해서   원래 글꼴크기로 보여주자 
+				baseFontSize = 14;
+				
+			}	
+		    
+		    //3. <p class="fontSize">14px</p> 요소 영역을 선택해서 
+		    //    14px 자리에 들어갈 글자크기의 값을 baseFontSize변수에 저장된  px 값으로 설정 
+		    $(".fontSize").text(baseFontSize + "px");
+		    
+		    //4. <body></body>요소(전체 웹브라우저 창에 보이는 화면 영역)를 선택해서
+		    //   전체 글꼴 크기를 현재 baseFontSize변수에 저장된 px값으로 설정
+		    $("body").css("fontSize", baseFontSize + "px");		    
+	});
+	
+});
+</script>
+</head>
+<body>
+	<p class="zoomBtnZone">
+		<button class="zoomOutBtn">-</button>
+		<button class="originBtn">100%</button>
+		<button class="zoomInBtn">+</button>
+	</p>
+	<p class="fontSize">14px</p>
+	<div id="wrap">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas feugiat consectetur nibh, ut luctus urna placerat non. Phasellus consectetur nunc nec mi feugiat egestas. Pellentesque et consectetur mauris, sed rutrum est. Etiam odio nunc, ornare quis urna sed, fermentum fermentum augue. Nam imperdiet vestibulum ipsum quis feugiat. Nunc non pellentesque diam, nec tempor nibh. Ut consequat sem sit amet ullamcorper sodales.
+	</div>
+</body>
+</html>
