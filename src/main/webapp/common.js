@@ -96,10 +96,8 @@ $(function(){
  참고 : zoom 버튼을 클릭 했을때 화면 확대/축소를 적용하기 위해서는 
       CSS속성중에 zoom속성과 transform의 scale속성 사용법을 잘 알고 있어야 합니다.
  		
- 		이때 웹브라우저 마다 CSS속성이 모두 정상적으로 작동하지 않으므로 
-                구분해서 사용 해야 하는데,
- 		zoom속성의 경우에는 현재 파이어폭스를 제외한 모든 브라우저에서 지원하고 있습니다.
- 		
+ 		이때 웹브라우저 마다 CSS속성이 모두 정상적으로 작동하지 않으므로 구분해서 사용 해야 하는데,
+ 		zoom속성의 경우에는 현재 파이어폭스를 제외한 모든 브라우저에서 지원하고 있습니다.		
  		그리고 transform의 scale속성은 현재 IE8 이하를 제외한 모든 브라우저에서 지원 하고 있습니다.
  
  		1.제이쿼리의 zoom속성 사용법
@@ -115,8 +113,7 @@ $(function(){
  				//화면에서 <body>영역의 모든 태그요소가 2배로 확대 됩니다.
  				
  			참고 :  transform의 scale함수을 이용해 보면 확대 기준점이 가운데로 지정되어 있어
- 			         사방으로 퍼져 확대됨.
- 			         확대 기준점을 바꾸고 싶으면 CSS에 transform-origin속성을 사용 하면됨.
+ 			       사방으로 퍼져 확대됨. 확대 기준점을 바꾸고 싶으면 CSS에 transform-origin속성을 사용 하면됨.
  		
  		3.제이쿼리의 transform-origin속성 사용법
  			문법-> $(요소선택).css("transform-origin","x축 위칫값 y축 위칫값")
@@ -187,14 +184,49 @@ $(function(){
   
 /* zoom 버튼 */
 
+//1. 확대 비율 초깃값 변수에 설정
+let base = 100;
 
+//2. <body></body> 전체 영역을 선택해서 변수에 저장
+let mybody = $("body");
 
-
-
-
-
-
-
+//3. <ul id="zoom"> 부모요소를 먼저 선택하고 후손선택자 빈공백을 이용하여 후손<a>요소 3쌍을 모두 배열에 담아 최종선택
+//[ <a href="#" class="zoom_in">,          +      0 index
+//  <a href="#" class="zoom_return">,     100     1 index
+//  <a href="#" class="zoom_out">    ]     -      2 index
+//그리고 click 이벤트를 각각 등록하자 
+$("#zoom a").on("click", function(){
+	
+	// +   100   -  <a>태그들 중에서  'click'이벤트가 발생한 하나의 <a>의 index위치 번호 얻자
+	let zNum = $("#zoom a").index(this);
+	
+	if(zNum === 0){  // + <a>를 클릭했다면?  =>  index 위치번호가 0인 칸에 저장된 <a>이면?
+		
+		base += 10; //확대값 10을 누적해서 증가시킨다.
+		
+	}else if(zNum === 1){  // 100 <a>를 클릭했다면?   =>   index 위치번호가 1인 칸에 저장된 <a>이면?
+		
+		base = 100; //정사이즈 100으로 다시 설정.
+		
+	}else{ // - <a> 를 클릭했다면?  => index 위치번호가 2인 칸에 저장된 <a>이면?
+		
+		base -= 10; //축소값 설정을 위해 -10 차감 
+	}
+	
+	//<body></body> 전체 화면 영역을 선택해서 
+	mybody
+	//overflow-x속성을 적용하면 IE 8버전 이하에서 정상적으로 작동되도록 설정
+	.css("overflow-x","auto")
+	//body태그 전체 화면 영역의 확대 기준점을 x축과 y축의 좌표 0, 0으로 설정 하여 x축과 y축 방향으로 확대 되도록 설정
+	.css("transform-origin", "0 0")
+	//body태그 전체 화면 영역에 포함된 자식요소들 영역들이 base/100의 값만큼 확대되도록 설정
+	.css("transform","scale("+ base/100 +")")
+	//body태그 전체 화면 영역의 모든 태그가 base의 값 % 만큼 확대/축소 되도록 설정
+	.css("zoom", base+"%");
+	
+	return false; //click 한  <a>태그의 href속성으로 설정된 기본이벤트 차단 
+	
+});
 
 
 //-----------------------------------------------------------------------------------------------------
@@ -203,15 +235,19 @@ $(function(){
    	인쇄 버튼 웹사이트에서 인쇄 버튼을 방문자가 클릭했을때.. 
     인쇄창을 뛰우는 방법을 알아 봅시다.
    */
- 
+  //인쇄버튼 <img>영역 감싸고 있는 부모 <a>를 선택해서 'click'이벤트 등록
+  $(".print_btn").click(function(event){
 	
+		event.preventDefault();  //a의 href 기본이벤트 차단
+		/*
+		window객체는 윈도우 창의 정보를 가지고 있는 객체 이기때문에
+		print()메소드를 제공합니다.  
+		print()메소드를 호출하면 인쇄 미리보기창을 띄워주는 기능이 실행됩니다.
+		*/
+		window.print();
 	
+  });
 	
-	
-	
-	
-	
-  
 //-----------------------------------------------------------------------------------------------------
 
   /*
@@ -265,31 +301,80 @@ $(function(){
   /*
    주제: 슬라이드 전체 메뉴 만들기
    - 전체 메뉴를 클릭 했을 때 전체메뉴가 slide효과로 펼쳐지고
-          전체 메뉴 버튼 이미지도 바뀌도록 만들어 보자
+     전체 메뉴 버튼 이미지도 바뀌도록 만들어 보자
    - [전체메뉴]버튼을 다시~ 클릭 했을때 전체 메뉴가 위로 접히면서 숨겨지게 할수도 있고,
      [CLOSE]버튼을 클릭했을때는 다시 전체메뉴가 위로 접히면서 사라지게도 할수 있다.  
    */
  
+	$("#total_btn>a").click(function(){             // <a>[전체메뉴 ▼] 클릭시  실행
+		
+		$("#total_menu").slideToggle("normal");     //하위 서브 메뉴 <div>영역을 열거나 닫기 
+		
+		const $img = $("img", this);               // 클릭된 <a> 안에 만들어진 하위 <img>를 최종 선택해 저장
+		
+	    const isClosed = $img.attr("src").includes("out");  //현재 [전체메뉴 ▼] 상태인지 확인  
+		
+		$img.attr("src",  isClosed ? "images/allmenu_btn_over.gif" : "images/allmenu_btn_out.gif");
+		//										[전체메뉴 ▲]                   [전체메뉴 ▼]
+		
+		return false;  								// <a>의 기본 링크 이동 막기
+	});
+	 
  
 	 
 	 
  
  
    
-  
-
+ 
 //-----------------------------------------------------------------------------------------------------
-
   /*
     주제 :  현재 날짜 표기 하기
     사이트 헤더 영역에  현재 연도, 월, 일을 표기 합니다.
     Date객체를 사용하여 오늘의 날짜 정보를 구해 올것입니다.
   */
+  
+	//1. 자바스크립트의 Date객체는 현재 날짜와 시간을 기준으로 정보를 제공하는 객체 입니다.
+	// 결론 : new Date(); 객체 생성 
+	let date = new Date();
+	
+	//2. 초 단위로 Date객체의 시간값을 밀리초 값으로 구해서 변수에 저장
+	/*
+		Date객체의 getTime() 메소드를 호출하면?
+		1970년 1월 1일 00:00:00 초부터 현재 오늘날짜까지 경과된 시간정보를 밀리초 단위로 반환합니다.
+	*/
+	 let initalTime = date.getTime();
+	 
+	 
+	 //3.경과된 시간을 밀리초 단위로 저장할 변수
+	 //-> 초깃값은 0으로 설정되어 있고, 이후에 매 초마다 1000밀리초씩 증가히게 됩니다. 
+	 let elapsedTime = 0;
+	
+	 //4. 1초 간격으로 날짜와 시간정보를 보여주기 위함 
+	 window.setInterval(function(){
+		
+		//매 1초 마다 elapsedTime변수에 1000을 더하여 경과 시간을 누적합니다.
+		//요약 : 1초 결과 시간을 변수에 누적
+		elapsedTime += 1000;
+		
+		//setTime() 메소드를 사용하여 Date객체의 시간을 업데이트 합니다.
+		//초기시간(initalTime)에 경과 시간을 더하여 새로운 시간을 만들어 Date객체 설정 합니다.
+		//이렇게 하면 항상 현재 시간에 맞춰 업데이트됩니다.
+		date.setTime( initalTime + elapsedTime );
+		//기존 위 Date객체의 시간을 초기시간과 경과의 합계로 설정 
+		
 
-	
-	
-	
-	
+		$("#date_wrap .year").text(date.getFullYear());   //현재 연도 2026 넣기 
+		$("#date_wrap .month").text(date.getMonth() + 1); //현재 월정보 7 넣기 
+		$("#date_wrap .date").text(date.getDate());       //현재 일정보 16 넣기 
+		$("#date_wrap .hour").text(date.getHours());      //현재 시정보 12 넣기 
+		$("#date_wrap .minute").text(date.getMinutes());  //현재 분정보 18 넣기 
+		$("#date_wrap .second").text(date.getSeconds());  //현재 초정보 59 넣기 	
+		
+	 },1000);
+	 
+	   
+
 	
 	
    
