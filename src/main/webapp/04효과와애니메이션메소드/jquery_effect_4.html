@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+	<style>
+		 h1{ width: 50px;   height: 30px;   background-color: red;  font-size: 100%; }
+	</style>
+	
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	
+	<script type="text/javascript">
+		/*
+			fadeTo() 메소드
+			- 선택한 요소가 노출되어 있으면 요소에 투명도를 설정해서 지정한 만큼 숨김니다.
+			  투명도값은   0.0 ~ 1.0 사이의 값을 입력할수 있으며
+			  숫자가 1에 가까울수록 선명하게 보입니다.
+			  가령, 50%만큼 투명도를 적용하려면 0.5를 입력하면 됩니다.
+			- 문법
+				$("요소선택").fadeTo("효과속도",투명도값);
+		*/
+		$(function(){
+		/*
+			//1. <button id="btn1">투명도(30%)</button> 요소를 선택해서  'click'이벤트를 등록 후
+			//   사이트 이용자가 이 버튼을 클릭하면  click이벤트가 발생하여 이벤트 핸들러 function이 실행되게 작성
+			$("#btn1").on("click", function(){
+				
+				//2. <h1>내용</h1> 요소를 선택해서 fadeTo(1000,0.3); 형태로 메소드를 호출하여 
+				//   <h1>내용</h1> 요소 영역을 30% 만큼 화면에 노출되게(70% 투명도 설정) 하자 
+				$("h1").fadeTo(1000, 0.3);			
+							
+			});
+		*/	
+		//============================================================================================
+		/*	
+			<button id="btn1">투명도(30%)</button>
+			<button id="btn2">투명도(100%)</button>   
+			두쌍을 그룹선택자 , 쉼표로 다중 선택해서 on메소드로 click이벤트를 각각 등록	
+			
+			두 button중 하나의 button에 click이벤트가 발생하면 처리 할 내용
+			
+			  <button id="btn1">투명도(30%)</button> 요소에 click이벤트가 발생하면?
+		      <h1>내용</h1>요소영역을 선택해서 1초만에 30% 만큼 노출되게 하고 
+		        
+	          <button id="btn2">투명도(100%)</button> 요소에 click이벤트가 발생하면?
+	          <h1>내용</h1>요소영역을 선택해서  1초만에 100% 만큼 노출되게 하자.	
+		
+		*/
+			$("#btn1, #btn2").on("click",  function(){
+				
+				// $(this) => 두 button중에서 click이벤트가 발생한 button요소 하나 선택 
+				
+				//1. click 이벤트가 발생한 <button>요소에 따라 ~ 투명도값을 얻어 변수에 저장
+				let value =  ( $(this).attr("id") === "btn1" )  ?  0.3  :  1;
+				//						조건식                    ?  참   : 거짓;
+				
+				//2. <h1>내용</h1> 선택해 fadeTo 메소드를 사용하여 특정 투명도값 설정하여 보이게 하자 
+				$("h1").fadeTo(3000, value);
+ 				
+				
+			});
+			
+
+		});
+	</script>
+</head>
+<body>
+	<button id="btn1">투명도(30%)</button>
+	<button id="btn2">투명도(100%)</button>
+	<h1>내용</h1>
+	
+	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
